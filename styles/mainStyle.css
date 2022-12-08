@@ -1,3 +1,21 @@
+nav {
+    position: fixed;
+    top: 0;
+}
+
+nav ul {
+    display: flex;
+    list-style: none;
+}
+
+nav ul li {
+    margin: 0 5% 0 5%;
+}
+
 section {
     min-height: 97vh;
+}
+
+h1 {
+    margin-top: 2rem;
 }
