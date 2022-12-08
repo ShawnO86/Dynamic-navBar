@@ -1,47 +1,45 @@
 //Declare the navagation items in an array
 let navListItems = ["section_1", "section_2", "section_3", "section_4"];
+const navBar = document.createElement("nav");
+const newList = document.createElement("ul");
 
-function createNav(navBarItems) {
-    const navBar = document.createElement('nav');
-    const newList = document.createElement('ul');
 //Loop through referenced array of navagation items
-    for (let i = 0; i <= navBarItems.length - 1; i++) {
-        const newListItem = document.createElement('li');
-        
-        newListItem.setAttribute("class", "navBtn");
-        newListItem.setAttribute("id",  navBarItems[i] + "_Btn");
-        newListItem.innerHTML = navBarItems[i];
-
-        newList.appendChild(newListItem);
-    }
-
-    document.body.appendChild(navBar)
-    navBar.appendChild(newList)
+for (let i = 0; i <= navListItems.length - 1; i++) {
+    const newListItem = document.createElement('li');
+    const newItemBtn = document.createElement("button")
+    //Append button to this li
+    newListItem.appendChild(newItemBtn);
+    //Set class and id of this button
+    newItemBtn.setAttribute("class", "navBtn");
+    newItemBtn.setAttribute("id", navListItems[i] + "_Btn");
+    //Set text to corresponding section
+    newItemBtn.innerText = navListItems[i];
+    //Append li to unordered list
+    newList.appendChild(newListItem);
 }
+//Append nav to body and created list to nav
+document.body.appendChild(navBar);
+navBar.appendChild(newList);
 
-createNav(navListItems);
+//Get array of buttons in nav
+const buttons = document.querySelectorAll('.navBtn');
+//Loop through buttons array until "i" is greater than length of buttons array
+for (let i = 0; i < buttons.length; i++) {
+    //Adding one to increment as naming is not 0 index
+    const sectionInc = i + 1;
+    //Declaring this button to add listener too 
+    const button = document.getElementById(buttons[i].id);
+    //Add event listeners to each button in "buttons" array
+    button.addEventListener("click", (e) => {
+        e.preventDefault();
+        document.getElementById("section_" + sectionInc).scrollIntoView({ block: "start", behavior: "smooth" });
+    });
+};
 
-const section_1_btn = document.getElementById("section_1_Btn");
-const section_2_btn = document.getElementById("section_2_Btn");
-const section_3_btn = document.getElementById("section_3_Btn");
-const section_4_btn = document.getElementById("section_4_Btn");
-const section_1_Container = document.getElementById("section_1");
-const section_2_Container = document.getElementById("section_2");
-const section_3_Container = document.getElementById("section_3");
-const section_4_Container = document.getElementById("section_4");
-
-section_1_btn.addEventListener("click", () => {
-    section_1_Container.scrollIntoView({block: 'start', behavior: 'smooth'});
-});
-
-section_2_btn.addEventListener("click", () => {
-    section_2_Container.scrollIntoView({block: 'start', behavior: 'smooth'});
-});
-
-section_3_btn.addEventListener("click", () => {
-    section_3_Container.scrollIntoView({block: 'start', behavior: 'smooth'});
-});
-
-section_4_btn.addEventListener("click", () => {
-    section_4_Container.scrollIntoView({block: 'start', behavior: 'smooth'});
-});
+//Button for scrolling to the top of page
+const toTopBtn = document.getElementById("goTopLink");
+const topContainer = document.getElementById("layoutContainer");
+toTopBtn.addEventListener("click", (e) => {
+    e.preventDefault();
+    topContainer.scrollIntoView({ block: "start", behavior: "smooth" })
+})
