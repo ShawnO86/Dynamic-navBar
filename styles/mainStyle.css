@@ -9,6 +9,10 @@ main, header {
     margin: 4rem 5%;
 }
 
+header, section {
+    min-height: 100vh;
+}
+
 nav ul {
     display: flex;
     position: fixed;
@@ -39,20 +43,21 @@ nav ul li:last-of-type {
     color: #535953;
 }
 
-.navBtn:hover {
-    background-color: #F1FFF0;
-    color: #000;
-}
-
-.navBtn:active {
+.navBtnIsActive {
     background-color: #535953;
     color: #A9FFA3;
 }
 
-section {
-    min-height: 97vh;
+.navBtn:hover, .navBtn:active {
+    background-color: #535953;
+    color: #A9FFA3;
 }
 
-#section_1, #section_2, #section_3, #section_4, #layoutContainer {
+#section_1, #section_2, #section_3, #section_4 {
+    scroll-margin-top: 4rem;
+    margin: 4rem auto;
+}
+
+#layoutContainer {
     scroll-margin-top: 4rem;
 }

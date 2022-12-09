@@ -25,7 +25,7 @@ navBar.appendChild(newList);
 const buttons = document.querySelectorAll('.navBtn');
 //Loop through buttons array until "i" is greater than length of buttons array
 for (let i = 0; i < buttons.length; i++) {
-    //Adding one to increment as naming is not 0 index
+    //Adding one to increment as naming is not a 0 index
     const sectionInc = i + 1;
     //Declaring this button to add listener too 
     const button = document.getElementById(buttons[i].id);
@@ -42,4 +42,38 @@ const topContainer = document.getElementById("layoutContainer");
 toTopBtn.addEventListener("click", (e) => {
     e.preventDefault();
     topContainer.scrollIntoView({ block: "start", behavior: "smooth" })
+});
+
+//Scroll sensing function
+function isInViewport (section) {
+    //Getting and storing DOMRect info
+    const domRect = section.getBoundingClientRect();
+    //Return true when top of section's default position has passed at least 50% above AND below it's height 
+    return domRect.top > -window.innerHeight * 0.5 && domRect.top < window.innerHeight * 0.5;
+  }
+
+const section_1 = document.getElementById("section_1");
+const section_2 = document.getElementById("section_2");
+const section_3 = document.getElementById("section_3");
+const section_4 = document.getElementById("section_4");
+const button_1 = document.getElementById("section_1_Btn");
+const button_2 = document.getElementById("section_2_Btn");
+const button_3 = document.getElementById("section_3_Btn");
+const button_4 = document.getElementById("section_4_Btn");
+
+function scrollListener(section, button) {
+    document.addEventListener("scroll", () => {
+        if(isInViewport(section)) {
+            button.classList.add("navBtnIsActive");
+        } else {
+            button.classList.remove("navBtnIsActive");
+        }
+        
+console.log(section_1.getBoundingClientRect());
 })
+}
+
+scrollListener(section_1, button_1);
+scrollListener(section_2, button_2);
+scrollListener(section_3, button_3);
+scrollListener(section_4, button_4);
