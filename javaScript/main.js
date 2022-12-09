@@ -44,7 +44,7 @@ toTopBtn.addEventListener("click", (e) => {
 
 //Scroll sensing function
 function isInViewport(section) {
-    //Getting and storing DOMRect info
+    //Getting and storing DOMRect info for specified section
     const domRect = section.getBoundingClientRect();
     //Return true when top of section's box is within 50% of the window height AND has gone 50% of the sections height above the window.
     return domRect.top > domRect.height * -0.5 && domRect.top < window.innerHeight * 0.5;
