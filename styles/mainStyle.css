@@ -47,12 +47,7 @@ nav ul li:last-of-type {
     color: #535953;
 }
 
-.navBtnIsActive {
-    background-color: #535953;
-    color: #A9FFA3;
-}
-
-.navBtn:active {
+.navBtnIsActive, .navBtn:active {
     background-color: #535953;
     color: #A9FFA3;
 }

@@ -27,12 +27,12 @@ const buttons = document.querySelectorAll('.navBtn');
 for (let i = 0; i < buttons.length; i++) {
     //Adding one to increment as naming is not a 0 index
     const sectionInc = i + 1;
-    //Declaring this button to add listener too 
+    //Gettting #id of button to add listener too 
     const button = document.getElementById(buttons[i].id);
     //Add event listeners to each button in "buttons" array
     button.addEventListener("click", (e) => {
         e.preventDefault();
-        document.getElementById("section_" + sectionInc).scrollIntoView({ block: "start", behavior: "smooth" });
+        document.getElementById(navListItems[i]).scrollIntoView({ block: "start", behavior: "smooth" });
     })
 }
 
@@ -48,7 +48,7 @@ toTopBtn.addEventListener("click", (e) => {
 function isInViewport(section) {
     //Getting and storing DOMRect info
     const domRect = section.getBoundingClientRect();
-    //Return true when top of section's box is within 50% of the window height AND 50% of the section height above the window.
+    //Return true when top of section's box is within 50% of the window height AND has gone 50% of the sections height above the window.
     return domRect.top > domRect.height * -0.5 && domRect.top < window.innerHeight * 0.5;
 }
 
@@ -62,19 +62,20 @@ const button_2 = document.getElementById("section_2_Btn");
 const button_3 = document.getElementById("section_3_Btn");
 const button_4 = document.getElementById("section_4_Btn");
 
-//Function to add the navBtnIsActive 
+//Function to add the navBtnIsActive if corresponding section is in viewport 
 function scrollListener(section, button) {
+    //Listen to scroll
     document.addEventListener("scroll", () => {
+        //Add class navBtnIsActive if isInViewport returns true
         if (isInViewport(section)) {
             button.classList.add("navBtnIsActive");
+            //Remove class if false
         } else {
             button.classList.remove("navBtnIsActive");
         }
-
-        console.log(section_1.getBoundingClientRect());
     })
 }
-
+//Calling function for each section to monitor where it's at in window and to change button styles when it is.
 scrollListener(section_1, button_1);
 scrollListener(section_2, button_2);
 scrollListener(section_3, button_3);
