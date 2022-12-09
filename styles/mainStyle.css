@@ -48,7 +48,7 @@ nav ul li:last-of-type {
     color: #A9FFA3;
 }
 
-.navBtn:hover, .navBtn:active {
+.navBtn:active {
     background-color: #535953;
     color: #A9FFA3;
 }
