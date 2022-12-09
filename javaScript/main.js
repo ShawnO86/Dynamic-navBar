@@ -17,7 +17,7 @@ for (let i = 0; i <= navListItems.length - 1; i++) {
     //Append li to unordered list
     newList.appendChild(newListItem);
 }
-//Append nav to body and created list to nav
+//Append nav to body and previously created list to nav
 document.body.appendChild(navBar);
 navBar.appendChild(newList);
 
@@ -25,8 +25,6 @@ navBar.appendChild(newList);
 const buttons = document.querySelectorAll('.navBtn');
 //Loop through buttons array until "i" is greater than length of buttons array
 for (let i = 0; i < buttons.length; i++) {
-    //Adding one to increment as naming is not a 0 index
-    const sectionInc = i + 1;
     //Gettting #id of button to add listener too 
     const button = document.getElementById(buttons[i].id);
     //Add event listeners to each button in "buttons" array
