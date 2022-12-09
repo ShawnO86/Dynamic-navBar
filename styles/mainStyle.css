@@ -9,8 +9,12 @@ main, header {
     margin: 4rem 5%;
 }
 
-header, section {
+header {
     min-height: 100vh;
+}
+
+section {
+    min-height: 60vh;
 }
 
 nav ul {
@@ -56,6 +60,7 @@ nav ul li:last-of-type {
 #section_1, #section_2, #section_3, #section_4 {
     scroll-margin-top: 4rem;
     margin: 4rem auto;
+    border: 1px solid black;
 }
 
 #layoutContainer {

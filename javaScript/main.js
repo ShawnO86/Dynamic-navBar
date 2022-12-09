@@ -33,8 +33,8 @@ for (let i = 0; i < buttons.length; i++) {
     button.addEventListener("click", (e) => {
         e.preventDefault();
         document.getElementById("section_" + sectionInc).scrollIntoView({ block: "start", behavior: "smooth" });
-    });
-};
+    })
+}
 
 //Button for scrolling to the top of page
 const toTopBtn = document.getElementById("goTopLink");
@@ -42,16 +42,17 @@ const topContainer = document.getElementById("layoutContainer");
 toTopBtn.addEventListener("click", (e) => {
     e.preventDefault();
     topContainer.scrollIntoView({ block: "start", behavior: "smooth" })
-});
+})
 
 //Scroll sensing function
-function isInViewport (section) {
+function isInViewport(section) {
     //Getting and storing DOMRect info
     const domRect = section.getBoundingClientRect();
-    //Return true when top of section's default position has passed at least 50% above AND below it's height 
-    return domRect.top > -window.innerHeight * 0.5 && domRect.top < window.innerHeight * 0.5;
-  }
+    //Return true when top of section's box is within 50% of the window height AND 50% of the section height above the window.
+    return domRect.top > domRect.height * -0.5 && domRect.top < window.innerHeight * 0.5;
+}
 
+//Declare section and button IDs
 const section_1 = document.getElementById("section_1");
 const section_2 = document.getElementById("section_2");
 const section_3 = document.getElementById("section_3");
@@ -61,16 +62,17 @@ const button_2 = document.getElementById("section_2_Btn");
 const button_3 = document.getElementById("section_3_Btn");
 const button_4 = document.getElementById("section_4_Btn");
 
+//Function to add the navBtnIsActive 
 function scrollListener(section, button) {
     document.addEventListener("scroll", () => {
-        if(isInViewport(section)) {
+        if (isInViewport(section)) {
             button.classList.add("navBtnIsActive");
         } else {
             button.classList.remove("navBtnIsActive");
         }
-        
-console.log(section_1.getBoundingClientRect());
-})
+
+        console.log(section_1.getBoundingClientRect());
+    })
 }
 
 scrollListener(section_1, button_1);
