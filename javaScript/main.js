@@ -1,5 +1,6 @@
 //Declare the navagation items in an array
-let navListItems = ["section_1", "section_2", "section_3", "section_4"];
+
+let navListItems = document.getElementsByTagName("section");
 const navBar = document.createElement("nav");
 const newList = document.createElement("ul");
 
@@ -11,15 +12,15 @@ for (let i = 0; i <= navListItems.length - 1; i++) {
     newListItem.appendChild(newItemBtn);
     //Set class and id of this button
     newItemBtn.setAttribute("class", "navBtn");
-    newItemBtn.setAttribute("id", navListItems[i] + "_Btn");
+    newItemBtn.setAttribute("id", navListItems[i].id + "_Btn");
     //Set text to corresponding section
-    newItemBtn.innerText = navListItems[i];
+    newItemBtn.innerText = navListItems[i].id;
     //Append li to unordered list
     newList.appendChild(newListItem);
 }
 //Append nav to body and previously created list to nav
-document.body.appendChild(navBar);
 navBar.appendChild(newList);
+document.body.appendChild(navBar);
 
 //Get array of buttons in nav
 const buttons = document.querySelectorAll('.navBtn');
@@ -30,8 +31,9 @@ for (let i = 0; i < buttons.length; i++) {
     //Add event listeners to each button in "buttons" array
     button.addEventListener("click", (e) => {
         e.preventDefault();
-        document.getElementById(navListItems[i]).scrollIntoView({ block: "start", behavior: "smooth" });
+        navListItems[i].scrollIntoView({ block: "start", behavior: "smooth" });
     })
+    console.log(navListItems[i]);
 }
 
 //Button for scrolling to the top of page
@@ -50,19 +52,12 @@ function isInViewport(section) {
     return domRect.top > domRect.height * -0.5 && domRect.top < window.innerHeight * 0.5;
 }
 
-//Declare section and button IDs
-const section_1 = document.getElementById("section_1");
-const section_2 = document.getElementById("section_2");
-const section_3 = document.getElementById("section_3");
-const section_4 = document.getElementById("section_4");
-const button_1 = document.getElementById("section_1_Btn");
-const button_2 = document.getElementById("section_2_Btn");
-const button_3 = document.getElementById("section_3_Btn");
-const button_4 = document.getElementById("section_4_Btn");
-
-//Function to add the navBtnIsActive if corresponding section is in viewport 
-function scrollListener(section, button) {
-    //Listen to scroll
+//Adding button styles if corresponding section is in view
+for (let i = 0; i < buttons.length; i++) {
+    //Gettting #id of button to add listener too 
+    const button = document.getElementById(buttons[i].id);
+    //Getting section to check isInViewport
+    const section = navListItems[i];
     document.addEventListener("scroll", () => {
         //Add class navBtnIsActive if isInViewport returns true
         if (isInViewport(section)) {
@@ -73,8 +68,3 @@ function scrollListener(section, button) {
         }
     })
 }
-//Calling function for each section to monitor where it's at in window and to change button styles when it is.
-scrollListener(section_1, button_1);
-scrollListener(section_2, button_2);
-scrollListener(section_3, button_3);
-scrollListener(section_4, button_4);
