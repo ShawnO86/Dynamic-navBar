@@ -1,5 +1,4 @@
 //Declare the navagation items in an array
-
 let navListItems = document.getElementsByTagName("section");
 const navBar = document.createElement("nav");
 const newList = document.createElement("ul");
@@ -18,6 +17,7 @@ for (let i = 0; i <= navListItems.length - 1; i++) {
     //Append li to unordered list
     newList.appendChild(newListItem);
 }
+
 //Append nav to body and previously created list to nav
 navBar.appendChild(newList);
 document.body.appendChild(navBar);
@@ -31,9 +31,11 @@ for (let i = 0; i < buttons.length; i++) {
     //Add event listeners to each button in "buttons" array
     button.addEventListener("click", (e) => {
         e.preventDefault();
-        navListItems[i].scrollIntoView({ block: "start", behavior: "smooth" });
+        navListItems[i].scrollIntoView({
+            block: "start",
+            behavior: "smooth"
+        });
     })
-    console.log(navListItems[i]);
 }
 
 //Button for scrolling to the top of page
@@ -41,15 +43,18 @@ const toTopBtn = document.getElementById("goTopLink");
 const topContainer = document.getElementById("layoutContainer");
 toTopBtn.addEventListener("click", (e) => {
     e.preventDefault();
-    topContainer.scrollIntoView({ block: "start", behavior: "smooth" })
+    topContainer.scrollIntoView({
+        block: "start",
+        behavior: "smooth"
+    })
 })
 
 //Scroll sensing function
 function isInViewport(section) {
     //Getting and storing DOMRect info for specified section
-    const domRect = section.getBoundingClientRect();
-    //Return true when top of section's box is within 50% of the window height AND has gone 50% of the sections height above the window.
-    return domRect.top > domRect.height * -0.5 && domRect.top < window.innerHeight * 0.5;
+    const domRectSection = section.getBoundingClientRect();
+    //Returns true while section bottom is atleast 100px below the top of window AND section top is showing on atleast 15% of window.
+    return domRectSection.bottom >= 100 && domRectSection.top <= window.innerHeight * 0.85;
 }
 
 //Adding button styles if corresponding section is in view
@@ -58,13 +63,23 @@ for (let i = 0; i < buttons.length; i++) {
     const button = document.getElementById(buttons[i].id);
     //Getting section to check isInViewport
     const section = navListItems[i];
+    const sectionHead = section.querySelector(".sectionHeader");
+    const sectionContent = section.querySelector(".sectionContent");
     document.addEventListener("scroll", () => {
-        //Add class navBtnIsActive if isInViewport returns true
+        //Add classes if isInViewport returns true
         if (isInViewport(section)) {
             button.classList.add("navBtnIsActive");
+            sectionHead.classList.remove("aniSectionHeadOut");
+            sectionContent.classList.remove("aniSectionContentOut");
+            sectionHead.classList.add("aniSectionHeadIn");
+            sectionContent.classList.add("aniSectionContentIn");
             //Remove class if false
         } else {
             button.classList.remove("navBtnIsActive");
+            sectionHead.classList.remove("aniSectionHeadIn");
+            sectionContent.classList.remove("aniSectionContentIn");
+            sectionHead.classList.add("aniSectionHeadOut");
+            sectionContent.classList.add("aniSectionContentOut");
         }
     })
 }
