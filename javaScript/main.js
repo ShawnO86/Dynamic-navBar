@@ -65,7 +65,7 @@ for (let i = 0; i < buttons.length; i++) {
     const section = navListItems[i];
     const sectionHead = section.querySelector(".sectionHeader");
     const sectionContent = section.querySelector(".sectionContent");
-    document.addEventListener("scroll", () => {
+    window.addEventListener("scroll", () => {
         //Add classes if isInViewport returns true
         if (isInViewport(section)) {
             button.classList.add("navBtnIsActive");
