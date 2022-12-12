@@ -10,9 +10,11 @@ main {
 }
 
 header {
-    min-height: 90vh;
-    margin: 7rem 5% 0 5%;
-    text-align: center;
+    min-height: calc(100vh - 10rem);
+    margin: 2.5rem 0 0 0;
+    padding: 4rem 5%;
+    text-align: left;
+    background-color: #414741;
     font-size: 2rem;
 }
 
@@ -72,19 +74,19 @@ nav ul li {
 }
 
 .aniSectionHeadIn {
-    animation: 300ms ease-in 100ms forwards animated-head-in;
+    animation: animated-head-in 300ms ease-in 100ms forwards;
 }
 
 .aniSectionHeadOut {
-    animation: 300ms ease-in forwards animated-head-out;
+    animation: animated-head-out 300ms ease-in forwards;
 }
 
 .aniSectionContentIn {
-    animation: 300ms ease-in 300ms forwards animated-content-in;
+    animation: animated-content-in 300ms ease-in 300ms forwards;
 }
 
 .aniSectionContentOut {
-    animation: 300ms ease-in forwards animated-content-out;
+    animation: animated-content-out 300ms ease-in forwards;
 }
 
 #layoutContainer {
@@ -137,8 +139,6 @@ nav ul li {
 
 @media screen and (max-width: 800px) {
     header {
-        margin: 5rem 5% 0 5%;
-        text-align: center;
         font-size: 1.5rem;
     }
 
