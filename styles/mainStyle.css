@@ -6,12 +6,12 @@ body {
 }
 
 main {
-    margin: 4rem 5% 20rem 5%;
+    margin: 4rem calc(10rem + 5%) 20rem 5%;
 }
 
 header {
-    min-height: calc(100vh - 10rem);
-    margin: 2.25rem 0 5rem 0;
+    min-height: calc(100vh - 7rem);
+    margin: 0 0 5rem 0;
     padding: 4rem 5%;
     text-align: left;
     background-color: #414741;
@@ -23,16 +23,28 @@ section {
     margin: 0 auto 75vh auto;
 }
 
-nav ul {
+nav {
     display: flex;
+    flex-direction: column;
     justify-content: right;
     position: fixed;
     top: 0;
-    width: 100%;
+    right: 0;
+    height: 100%;
+    width: 10rem;
+    background-color: rgba(169, 255, 163, 0.1);
+    text-align: center;
+}
+
+nav ul {
+    height: 100%;
     list-style: none;
-    background-color: rgba(169, 255, 163, 0.05);
     margin: 0;
-    padding: 0 0 0.25rem 0;
+    padding: 2rem 0 0 0;
+}
+
+nav ul::before {
+content: "On this page:";
 }
 
 nav ul li {
@@ -45,7 +57,7 @@ nav ul li {
     border: none;
     border-right: 1px solid rgba(0, 0, 0, 0.35);
     padding: 0.25rem 0.75rem;
-    background-color: #535953;
+    background-color: rgba(169, 255, 163, 0.1);
     color: #F1FFF0;
     height: 2rem;
     width: 10rem;
@@ -55,9 +67,10 @@ nav ul li {
     background-color: rgba(169, 255, 163);
     color: #535953;
     height: 3rem;
-    margin-bottom: -1rem;
-    border-radius: 0 0 1rem 1rem;
+    margin-left: -1rem;
+    border-radius: 1rem 0 0 1rem;
     font-weight: 600;
+    width: 11rem;
 }
 
 .sectionHeader {
@@ -145,9 +158,23 @@ nav ul li {
         scroll-margin-top: 4rem;
     }
 
-    nav ul {
+    nav {
         justify-content: center;
+        flex-direction: row;
+        width: 100%;
+        height: 2rem;
+        padding: 0;
     }
+
+    nav ul {
+        display: flex;
+        width: 100%;
+        height: 2rem;
+    }
+
+    nav ul::before {
+        content: "";
+        }
 
     nav ul li {
         flex-grow: 2;
